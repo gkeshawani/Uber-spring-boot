@@ -6,17 +6,20 @@ phases:
       java: corretto17
     commands:
       - echo Installing Maven...
+      - mvn --version # Check Maven is installed correctly
   build:
     commands:
-      - echo Building, Testing and packaging the application...
-      - mvn package
+      - echo Building, Testing, and Packaging the application...
+      - mvn clean package
   post_build:
     commands:
-      - echo Build, Testing and packaging completed.
+      - echo Build, Testing, and Packaging completed.
+      - ls target/ # Verify artifact generation
 artifacts:
   files:
     - target/*.jar
-  discard-paths: yes
+  discard-paths: true
+
 cache:
   paths:
     - '/root/.m2/**/*'
